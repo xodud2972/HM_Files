@@ -1,0 +1,33 @@
+// page가 1일떄만 공지게시글을 가져오도록 설정
+if ($_GET['page'] < 2) {
+    $noticeData = selectNoticeAll();
+}
+
+
+
+
+ <!-- 공지 TR태그 (페이지가 1일때만 나오게끔)-->
+                                <?php
+                                if ($_GET['page'] < 2) {
+                                    for ($index = 0; $index < sizeof($noticeData); $index++) {
+                                ?>
+                                        <tr class="odd gradeX">
+                                            <td align="center">
+                                                <b> 공지 </b>
+                                            </td>
+                                            <td>
+                                                <b>
+                                                    <a class="text-info" href="../view/select.php?action=select?&id=<?= $noticeData[$index]['board_id'] ?>">[공지사항] <?= $noticeData[$index]['title'] ?> </a>
+                                                </b>
+                                            </td>
+                                            <td>
+                                                <b>
+                                                    <?= $noticeData[$index]['writer'] ?>
+                                                </b>
+                                            </td>
+                                            <td><b><?= $noticeData[$index]["regDate"] ?></b></td>
+                                            <td></td>
+                                        </tr>
+                                <?php }
+                                }
+                                ?>
